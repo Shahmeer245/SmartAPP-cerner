@@ -269,20 +269,20 @@
 
                 });
 
-                var slot = smart.patient.api.fetchAll({
-                    type: 'Slot',
+                var medicationAdministration = smart.patient.api.fetchAll({
+                    type: 'MedicationAdministration',
                     query: {
                         patient: patient.id
                     }
                 });
 
-                $.when(slot).done(function (Slot) {
+                $.when(medicationAdministration).done(function (MedicationAdministration) {
 
-                    if (Slot != null) {
-                        if (Slot.length > 0) {
-                            for (var i = 0; i <= Slot.length; i++) {
-                                if (Slot[i] != null) {
-                                    if (Slot[i] != undefined) {
+                    if (MedicationAdministration != null) {
+                        if (MedicationAdministration.length > 0) {
+                            for (var i = 0; i <= MedicationAdministration.length; i++) {
+                                if (MedicationAdministration[i] != null) {
+                                    if (MedicationAdministration[i] != undefined) {
                                         // var title = Slot[i].substance.coding[0].display;
                                         // var recordeddate = Allergy[i].recordedDate
                                         Alert("ABC");
