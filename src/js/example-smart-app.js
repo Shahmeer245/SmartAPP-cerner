@@ -268,6 +268,32 @@
                     }, 7000);                   
 
                 });
+
+                var slot = smart.patient.api.fetchAll({
+                    type: 'Slot',
+                    query: {
+                        patient: patient.id
+                    }
+                });
+
+                $.when(slot).done(function (Slot) {
+
+                    if (Slot != null) {
+                        if (Slot.length > 0) {
+                            for (var i = 0; i <= Slot.length; i++) {
+                                if (Slot[i] != null) {
+                                    if (Slot[i] != undefined) {
+                                        // var title = Slot[i].substance.coding[0].display;
+                                        // var recordeddate = Allergy[i].recordedDate
+                                        Alert("SLOT");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+
             } else {
                 onError();
             }
