@@ -261,6 +261,29 @@
                         }
                     });
 
+                    var medicationAdministration = smart.patient.api.fetchAll({
+                        type: 'MedicationAdministration',
+                        query: {
+                            patient: patient.id
+                        }
+                    });
+
+                    $.when(medicationAdministration).done(function (MedicationAdministration) {
+
+                        if (MedicationAdministration != null) {
+                            if (MedicationAdministration.length > 0) {
+                                for (var i = 0; i <= MedicationAdministration.length; i++) {
+                                    if (MedicationAdministration[i] != null) {
+                                        if (MedicationAdministration[i] != undefined) {
+                                            // var title = Slot[i].substance.coding[0].display;
+                                            // var recordeddate = Allergy[i].recordedDate
+                                            Alert("ABC");
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
 
                     setTimeout(function () {
                         $("#timeline").show();
@@ -269,29 +292,7 @@
 
                 });
 
-                var medicationAdministration = smart.patient.api.fetchAll({
-                    type: 'MedicationAdministration',
-                    query: {
-                        patient: patient.id
-                    }
-                });
-
-                $.when(medicationAdministration).done(function (MedicationAdministration) {
-
-                    if (MedicationAdministration != null) {
-                        if (MedicationAdministration.length > 0) {
-                            for (var i = 0; i <= MedicationAdministration.length; i++) {
-                                if (MedicationAdministration[i] != null) {
-                                    if (MedicationAdministration[i] != undefined) {
-                                        // var title = Slot[i].substance.coding[0].display;
-                                        // var recordeddate = Allergy[i].recordedDate
-                                        Alert("ABC");
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
+                
 
 
             } else {
