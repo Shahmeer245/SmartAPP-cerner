@@ -285,6 +285,33 @@
                         }
                     });
 
+
+                    var goal = smart.patient.api.fetchAll({
+                        type: 'Goal',
+                        query: {
+                            patient: patient.id
+                        }
+                    });
+
+                    $.when(goal).done(function (Goal) {
+
+                        if (Goal != null) {
+                            if (Goal.length > 0) {
+                                for (var i = 0; i <= Goal.length; i++) {
+                                    if (Goal[i] != null) {
+                                        if (Goal[i] != undefined) {
+                                            // var title = Slot[i].substance.coding[0].display;
+                                            // var recordeddate = Allergy[i].recordedDate
+                                            Alert("ABC");
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+
+
                     setTimeout(function () {
                         $("#timeline").show();
                         timeline();
@@ -603,12 +630,26 @@
     function CreateCarePlan(id, patientid, title, desc, startdate, enddate) {        
         var data = {}
         var patientCarePlan = {}
+        
         patientCarePlan.Externalemrid = id;
         patientCarePlan.Title = title;
         patientCarePlan.Description = desc;
         patientCarePlan.STartDate = startdate;
         patientCarePlan.EndDate = enddate;
         patientCarePlan.PatientID = patientid;
+       
+        var abc = {}
+
+
+        abc.Externalemrid = id;
+        abc.Title = title;
+        abc.Description = desc;
+        abc.STartDate = startdate;
+        abc.EndDate = enddate;
+        abc.PatientID = patientid;
+
+        console.log(abc);
+        
 
         data.patientCarePlan = patientCarePlan;
 
@@ -647,7 +688,7 @@
         patientAllergy.name = title;
         patientAllergy.patientId = patientid;
         patientAllergy.RecordedDate = startdate;
-
+      
         data.patientAllergy = patientAllergy;
 
         $.ajax({
@@ -715,5 +756,47 @@
             }
         });
     }
+
+
+
+    function CreateMedicationAdministration() {
+        var data = {}
+        var patientMedicationAdministration = {}
+
+        //patientAllergy.Externalemrid = id;
+        //patientAllergy.name = title;
+        //patientAllergy.patientId = patientid;
+        //patientAllergy.RecordedDate = startdate;
+
+        data.patientMedicationAdministration = patientMedicationAdministration;
+
+        $.ajax({
+            url: $("#hdnPatientChartAPIURL").val() + "CreatePatientMedicationAdministrationCRM",
+            method: "POST",
+            async: false,
+            dataType: "json",
+            data: JSON.stringify(data),
+            crossDomain: true,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            beforeSend: function (xhr) {
+                /* Authorization header */
+                xhr.setRequestHeader("Authorization", $("#AuthorizationToken").val());
+            },
+            success: function (data) {
+                if (data.data.records != null) {
+
+                    //$("#timeline").show();
+
+                    //timeline();
+                }
+
+            },
+            error: function () {
+                console.log("error");
+            }
+        });
+    }
+
 
 })(window);
