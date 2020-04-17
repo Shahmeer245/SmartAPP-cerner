@@ -300,9 +300,12 @@
                                 for (var i = 0; i <= Goal.length; i++) {
                                     if (Goal[i] != null) {
                                         if (Goal[i] != undefined) {
-                                            // var title = Slot[i].substance.coding[0].display;
-                                            // var recordeddate = Allergy[i].recordedDate
-                                            Alert("ABC");
+                                           
+                                            var startdate = Goal[i].startDate;
+                                            var targetdate = Goal[i].targetDate;
+                                            var category = Goal[i].category[0].text;
+                                            var description = Goal[i].description;
+                                         
                                         }
                                     }
                                 }
@@ -797,6 +800,51 @@
             }
         });
     }
+
+    function CreateGoal(id, patientid, startDate, targetDate, category, description) {
+        var data = {}
+        var Goal = {}
+
+        Goal.Externalemrid = id;
+        Goal.Patientid = patientid;
+        Goal.Startdate = startDate;
+        Goal.TargetDate = targetDate;
+        Goal.Category = category;
+        Goal.Description = description;
+
+        //patientAllergy.RecordedDate = startdate;
+
+        data.goal = Goal;
+
+        $.ajax({
+            url: $("#hdnPatientChartAPIURL").val() + "CreatePatientGoalCRM",
+            method: "POST",
+            async: false,
+            dataType: "json",
+            data: JSON.stringify(data),
+            crossDomain: true,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            beforeSend: function (xhr) {
+                /* Authorization header */
+                xhr.setRequestHeader("Authorization", $("#AuthorizationToken").val());
+            },
+            success: function (data) {
+                if (data.data.records != null) {
+
+                    //$("#timeline").show();
+
+                    //timeline();
+                }
+
+            },
+            error: function () {
+                console.log("error");
+            }
+        });
+    }
+
+
 
 
 })(window);
