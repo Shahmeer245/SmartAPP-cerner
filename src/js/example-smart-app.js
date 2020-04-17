@@ -301,11 +301,12 @@
                                     if (Goal[i] != null) {
                                         if (Goal[i] != undefined) {
                                            
+                                            var externalEmrId = Goal[i].id;
                                             var startdate = Goal[i].startDate;
                                             var targetdate = Goal[i].targetDate;
                                             var category = Goal[i].category[0].text;
                                             var description = Goal[i].description;
-                                         
+                                            CreateGoal(externalEmrId, $("#CRMpatietid").val(), startDate, targetDate, category, description);
                                         }
                                     }
                                 }
