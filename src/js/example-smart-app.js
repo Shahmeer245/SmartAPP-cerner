@@ -306,7 +306,7 @@
                                             var targetdate = Goal[i].targetDate;
                                             var category = Goal[i].category[0].text;
                                             var description = Goal[i].description;
-                                            CreateGoal(externalEmrId, $("#CRMpatietid").val(), startDate, targetDate, category, description);
+                                            CreateGoal(externalEmrId, $("#CRMpatietid").val(), startdate, targetdate, category, description);
                                         }
                                     }
                                 }
