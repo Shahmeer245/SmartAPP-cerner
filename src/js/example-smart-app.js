@@ -815,7 +815,7 @@
 
         //patientAllergy.RecordedDate = startdate;
 
-        data.goal = Goal;
+        data.patientGoal = Goal;
 
         $.ajax({
             url: $("#hdnPatientChartAPIURL").val() + "CreatePatientGoalCRM",
