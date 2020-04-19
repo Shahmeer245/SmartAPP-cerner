@@ -5,7 +5,7 @@
 
     var currentStartDate;
     var currentEndDate = moment(new Date()).format('MM/DD/YYYY');
-    var checkedEvents = ['5', '6', '7', '8', '9', '11', '12', '13' , '14'];
+    var checkedEvents = ['5', '6', '7', '8', '9', '11', '12', '13' , '10'];
     var checkedYears = [];
     var pid = $("#CRMpatietid").val(); // parent.Xrm.Page.data.entity.getId();
     var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -92,7 +92,7 @@
                 if (checkedEvents.indexOf('13') > -1) {
                     ProcedureRequest();
                 }
-                if (checkedEvents.indexOf('14') > -1) {
+                if (checkedEvents.indexOf('10') > -1) {
                     Goal();
                 }
 
