@@ -92,6 +92,9 @@
                 if (checkedEvents.indexOf('13') > -1) {
                     ProcedureRequest();
                 }
+                if (checkedEvents.indexOf('14') > -1) {
+                    Goal();
+                }
 
             }
 
