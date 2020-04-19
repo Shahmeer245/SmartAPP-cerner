@@ -617,7 +617,7 @@
                     var item = {};
 
                     if (dataSet.hasOwnProperty('GoalId')) {
-                        item.id = dataSet.Id;
+                        item.id = dataSet.GoalId;
                     }
                     item.name = dataSet.name;
 
