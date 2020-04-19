@@ -616,14 +616,14 @@
                     var dataSet = data.data.records[i];
                     var item = {};
 
-                    if (dataSet.hasOwnProperty('Id')) {
+                    if (dataSet.hasOwnProperty('GoalId')) {
                         item.id = dataSet.Id;
                     }
                     item.name = dataSet.name;
 
-                    if (dataSet.hasOwnProperty('RecordedDate')) {
-                        item.date = moment.utc(dataSet.RecordedDate).format('MM/DD/YYYY');
-                        item.dateTime = moment.utc(dataSet.RecordedDate).format('YYYY-MM-DD HH:mm:ss');
+                    if (dataSet.hasOwnProperty('Startdate')) {
+                        item.date = moment.utc(dataSet.Startdate).format('MM/DD/YYYY');
+                        item.dateTime = moment.utc(dataSet.Startdate).format('YYYY-MM-DD HH:mm:ss');
                     }
                     item.type = 10;
                     item.entity = "Goal";
