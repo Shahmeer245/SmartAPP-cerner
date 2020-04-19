@@ -5,7 +5,7 @@
 
     var currentStartDate;
     var currentEndDate = moment(new Date()).format('MM/DD/YYYY');
-    var checkedEvents = ['5', '6', '7', '8', '9', '11', '12', '13'];
+    var checkedEvents = ['5', '6', '7', '8', '9', '11', '12', '13' , '14'];
     var checkedYears = [];
     var pid = $("#CRMpatietid").val(); // parent.Xrm.Page.data.entity.getId();
     var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -92,6 +92,7 @@
                 if (checkedEvents.indexOf('13') > -1) {
                     ProcedureRequest();
                 }
+
             }
 
             //event = $('select').val() == null ? '' : $('select').val();
@@ -586,6 +587,56 @@
 
 
     }
+
+
+    function Goal() {
+        var patient = {}
+        patient.patientId = pid;
+        patient.startDate = currentStartDate;
+        patient.endDate = currentEndDate;
+
+        $.ajax({
+            url: $("#hdnPatientChartAPIURL").val() + "getPatientGoalCRM",
+            method: "POST",
+            async: false,
+            dataType: "json",
+            data: JSON.stringify(patient),
+            crossDomain: true,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            beforeSend: function (xhr) {
+                /* Authorization header */
+                xhr.setRequestHeader("Authorization", $("#AuthorizationToken").val());
+            },
+            success: function (data) {
+                for (var i = 0; i < data.data.records.length; i++) {
+                    var dataSet = data.data.records[i];
+                    var item = {};
+
+                    if (dataSet.hasOwnProperty('Id')) {
+                        item.id = dataSet.Id;
+                    }
+                    item.name = dataSet.name;
+
+                    if (dataSet.hasOwnProperty('RecordedDate')) {
+                        item.date = moment.utc(dataSet.RecordedDate).format('MM/DD/YYYY');
+                        item.dateTime = moment.utc(dataSet.RecordedDate).format('YYYY-MM-DD HH:mm:ss');
+                    }
+                    item.type = 10;
+                    item.entity = "Goal";
+                    list.push(item);
+                };
+                return Promise.resolve();
+            },
+            error: function () {
+                console.log("error");
+            }
+        });
+
+
+    }
+
+
 
     function Observation() {
         var patient = {}
