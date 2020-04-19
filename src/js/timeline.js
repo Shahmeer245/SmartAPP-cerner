@@ -619,7 +619,7 @@
                     if (dataSet.hasOwnProperty('GoalId')) {
                         item.id = dataSet.GoalId;
                     }
-                    item.name = dataSet.name;
+                    item.name = dataSet.Category;
 
                     if (dataSet.hasOwnProperty('Startdate')) {
                         item.date = moment.utc(dataSet.Startdate).format('MM/DD/YYYY');
